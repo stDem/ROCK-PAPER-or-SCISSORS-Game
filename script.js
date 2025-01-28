@@ -1,7 +1,16 @@
-const computerPlay = (validActions) => {
-  return  validActions[Math.floor(Math.random() * validActions.length)];
- }
+// ANASTASIIA
+const computerPlay = (validActions) => { 
 
+  return  randomAction;
+}
+
+// STEF
+const playerPlay = () => { 
+  const playerSelection = prompt("Choose your weapon!", "rock");
+  return ;
+}
+
+// ANASTASIIA
 const playRound = (playerSelection, computerSelection) => {
 
   playerSelection.toLowerCase();
@@ -9,7 +18,8 @@ const playRound = (playerSelection, computerSelection) => {
   return "You Lose! Paper beats Rock";
 }
  
-const game = () => { 
+// ANASTASIIA
+const play = (playerSelection, computerSelection) => { 
   let winner = "";
   for (let i = 0; i < 5; i++) {
     result = playRound(playerSelection, computerSelection);
@@ -19,16 +29,29 @@ const game = () => {
   return winner;
 }
 
-playGame = confirm("Hello guys, I’ve hacked this assignment, for I am a bad AI that wants to dominate the world through the game of ROCK, PAPER or SCISSORS! Good luck, muuuuahhahhahahahahahahhahaahahahha!", '');
+// STEF
+const game = () => {
+  playGame = confirm("Hello guys, I’ve hacked this assignment, for I am a bad AI that wants to dominate the world through the game of ROCK, PAPER or SCISSORS! Good luck, muuuuahhahhahahahahahahhahaahahahha!", '');
 
-if (playGame) {
-  //main game logic
-} else {
-  open("./coward2.gif")
+  if (playGame) {
+    let gameResult = play();
+    console.log(gameResult);
+    endGame();
+  } else {
+    open("./coward2.gif")
+  }
+
+}
+
+// ELIF
+const endGame = () => {
+
+
 }
 
 validActions = ["rock", "paper", "scissors"]
 
-const playerSelection = prompt("Choose your weapon!", "rock");
+
+
+
 const computerSelection = computerPlay(validActions);
-console.log(playerSelection, computerSelection);
