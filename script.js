@@ -1,57 +1,140 @@
-// ANASTASIIA
-const computerPlay = (validActions) => { 
+const validActions = ["rock", "paper", "scissors"];
 
-  return  randomAction;
-}
+const playerPlay = () => {
+    let input = userInput(
+        "Choose your weapon!\n-> Rock\n-> Paper\n-> Scissors",
+        ""
+    );
 
-// 
-const playerPlay = () => { 
-  const playerSelection = prompt("Choose your weapon!", "rock");
-  return ;
-}
+    const regex = /^[a-zA-Z]+$/;
+    if (!regex.test(input)) {
+        alert("???\nSorry I don't understand that.\nTry again!");
+        return playerPlay();
+    }
+    action = input.toLocaleLowerCase();
+
+    return validActions.includes(action)
+        ? action
+        : (alert("That weapon is not valid in this game! Try again!"),
+          playerPlay());
+};
+
+const computerPlay = () => {
+  const randomAction = validActions[Math.floor(Math.random() * 3)];
+  console.log(`Computer chose: ${randomAction}`);
+  return randomAction;
+};
 
 // ANASTASIIA
 const playRound = (playerSelection, computerSelection) => {
-
-  playerSelection.toLowerCase();
-
-  return "You Lose! Paper beats Rock";
-}
- 
-// ANASTASIIA
-const play = (playerSelection, computerSelection) => { 
-  let winner = "";
-  for (let i = 0; i < 5; i++) {
-    result = playRound(playerSelection, computerSelection);
-    console.log(`Round ${i + 1}: ${result}`);
+  
+  if (playerSelection === computerSelection) {
+    return {
+      message: `It's a tie! Both chose ${capitalize(playerSelection)}.`,
+      winner: "tie"
+    };
   }
 
-  return winner;
-}
+  // Determine the winner using switch
+  switch (playerSelection) {
+    case "rock":
+      if (computerSelection === "scissors") {
+        return {
+          message: `You Win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}.`,
+          winner: "player"
+        };
+      } else {
+        return {
+          message: `You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}.`,
+          winner: "computer"
+        };
+      }
+
+    case "paper":
+      if (computerSelection === "rock") {
+        return {
+          message: `You Win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}.`,
+          winner: "player"
+        };
+      } else {
+        return {
+          message: `You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}.`,
+          winner: "computer"
+        };
+      }
+
+    case "scissors":
+      if (computerSelection === "paper") {
+        return {
+          message: `You Win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}.`,
+          winner: "player"
+        };
+      } else {
+        return {
+          message: `You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}.`,
+          winner: "computer"
+        };
+      }
+
+    default:
+      return {
+        message: "Invalid weapon! Choose rock, paper, or scissors.",
+        winner: null
+      };
+  }
+};
+
+
+const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1); // Helper function to capitalize the first letter of a string
+
+// ANASTASIIA
+const play = (playerSelection, computerSelection) => {
+    let winner = "";
+    for (let i = 0; i < 5; i++) {
+        result = playRound(playerSelection, computerSelection);
+        console.log(`Round ${i + 1}: ${result.message}`);
+    }
+
+    return winner;
+};
 
 // STEF
 const game = () => {
-  playGame = confirm("Hello guys, I’ve hacked this assignment, for I am a bad AI that wants to dominate the world through the game of ROCK, PAPER or SCISSORS! Good luck, muuuuahhahhahahahahahahhahaahahahha!", '');
+    playGame = confirm(
+        "HELLO HUMAN!\n I am a bad AI that wants to dominate the world through the game of\n\nROCK x PAPER x SCISSORS\n Muuuuahhahhahahahahahahhahaahahahha! \n\n Can you beat me?",
+        ""
+    );
 
-  if (playGame) {
-    let gameResult = play();
-    console.log(gameResult);
-    endGame();
-  } else {
-    open("./coward2.gif")
-  }
-
-}
+    if (playGame) {
+        let computer = computerPlay();
+        console.log(`${playerPlay()} vs. ${computer}`);
+        // let gameResult = play();
+        // console.log(gameResult);
+        // endGame();
+    } else {
+        open("./coward.gif", "_self");
+    }
+};
 
 // ELIF
-const endGame = () => {
+const endGame = () => {};
 
+const computerSelection = computerPlay();
 
+game();
+
+function userInput(text, placeholder = "") {
+    let input = prompt(text, placeholder);
+    if (input == null) {
+        let exit = confirm("Do you wish to quite the game?");
+        if (exit) {
+            alert("Bye Bye");
+            return quit();
+        } else
+          return userInput(text, placeholder);
+    } else return input;
 }
-
-validActions = ["rock", "paper", "scissors"]
-
-
-
-
-const computerSelection = computerPlay(validActions);
+function quit() {
+    open("./coward.jpg", "_self");
+    throw new Error("some error");
+}
