@@ -4,7 +4,7 @@ const computerPlay = (validActions) => {
   return  randomAction;
 }
 
-// STEF
+// 
 const playerPlay = () => { 
   const playerSelection = prompt("Choose your weapon!", "rock");
   return ;
