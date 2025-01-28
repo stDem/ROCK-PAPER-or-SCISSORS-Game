@@ -1,9 +1,5 @@
-const computerPlay = () => {
-    let validActions = ["rock", "paper", "scissors"];
-    return validActions[Math.floor(Math.random() * 3)];
-};
+let validActions = ["rock", "paper", "scissors"];
 
-// STEF
 const playerPlay = () => {
     let input = userInput(
         "Choose your weapon!\n-> Rock\n-> Paper\n-> Scissors",
@@ -15,19 +11,15 @@ const playerPlay = () => {
         alert("???\nSorry I don't understand that.\nTry again!");
         return playerPlay();
     }
-    input = input.toLocaleLowerCase();
+    action = input.toLocaleLowerCase();
 
-    switch (input) {
-        case "rock":
-        case "paper":
-        case "scissors":
-            return input;
-
-        default:
-            alert("That weapon is not valid in this game! Try again!");
-            return playerPlay();
-    }
+    return validActions.includes(action)
+        ? action
+        : (alert("That weapon is not valid in this game! Try again!"),
+          playerPlay());
 };
+
+const computerPlay = () => validActions[Math.floor(Math.random() * 3)];
 
 // ANASTASIIA
 const playRound = (playerSelection, computerSelection) => {
