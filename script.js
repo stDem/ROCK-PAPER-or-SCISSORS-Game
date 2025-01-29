@@ -92,6 +92,7 @@ const play = (playerSelection, computerSelection) => {
     let winner = "";
     let playerWins = 0;
     let computerWins = 0;
+    let tie = 0;
     for (let i = 0; i < 5; i++) {
         const result = playRound(playerSelection, computerSelection);
         console.log(`Round ${i + 1}: ${result.message}`);
@@ -101,6 +102,8 @@ const play = (playerSelection, computerSelection) => {
       playerWins++;
     } else if (result.winner === "computer") {
       computerWins++;
+    } else if (result.winner === "tie") {
+        tie++;
     }
 
     // Determine the overall winner
@@ -112,7 +115,7 @@ const play = (playerSelection, computerSelection) => {
     winner = "tie";
     }
   
-    return winner;
+  return { winner, playerWins, computerWins, tie }; 
 };
 
 // STEF
