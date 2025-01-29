@@ -137,7 +137,13 @@ const game = () => {
 };
 
 // ELIF
-const endGame = () => {};
+const endGame = function ( winner,playerWins,computerWins) {
+    
+    return winner
+        ? `Contratulations, You won!\n\n Player ${playerWins} - ${computerWins} Computer `
+        : `You lost!\n\nOh Poor guy such a shame on you!\n\n Player ${playerWins} - ${computerWins} Computer `;
+};
+
 
 const computerSelection = computerPlay();
 
