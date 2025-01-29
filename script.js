@@ -58,10 +58,11 @@ const game = () => {
 };
 
 // ELIF
-const endGame = function (playRound, winner) {
-    let reward = winner ? getReward(playRound) : -1;
-    totalScore += reward;
-    return victory
+const endGame = function ( winner) {
+    let reward = winner;
+    return winner
+        ? `Contratulations, You won!\n\nScore: ${reward}`
+        : `You lost!\n\nOh Poor guy such a shame on you!\n\nTotal Score:${reward} `;
 };
 
 const computerSelection = computerPlay();
