@@ -90,11 +90,28 @@ const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 // ANASTASIIA
 const play = (playerSelection, computerSelection) => {
     let winner = "";
+    let playerWins = 0;
+    let computerWins = 0;
     for (let i = 0; i < 5; i++) {
-        result = playRound(playerSelection, computerSelection);
+        const result = playRound(playerSelection, computerSelection);
         console.log(`Round ${i + 1}: ${result.message}`);
     }
 
+    if (result.winner === "player") {
+      playerWins++;
+    } else if (result.winner === "computer") {
+      computerWins++;
+    }
+
+    // Determine the overall winner
+    if (playerWins > computerWins) {
+    winner = "player";
+    } else if (computerWins > playerWins) {
+    winner = "computer";
+    } else {
+    winner = "tie";
+    }
+  
     return winner;
 };
 
