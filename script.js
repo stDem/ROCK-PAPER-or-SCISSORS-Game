@@ -1,4 +1,4 @@
-let validActions = ["rock", "paper", "scissors"];
+const validActions = ["rock", "paper", "scissors"];
 
 const playerPlay = () => {
     let input = userInput(
@@ -19,24 +19,103 @@ const playerPlay = () => {
           playerPlay());
 };
 
-const computerPlay = () => validActions[Math.floor(Math.random() * 3)];
+const computerPlay = () => {
+  const randomAction = validActions[Math.floor(Math.random() * 3)];
+  console.log(`Computer chose: ${randomAction}`);
+  return randomAction;
+};
 
 // ANASTASIIA
 const playRound = (playerSelection, computerSelection) => {
-    playerSelection.toLowerCase();
+  
+  if (playerSelection === computerSelection) {
+    return {
+      message: `It's a tie! Both chose ${capitalize(playerSelection)}.`,
+      winner: "tie"
+    };
+  }
 
-    return "You Lose! Paper beats Rock";
+  // Determine the winner using switch
+  switch (playerSelection) {
+    case "rock":
+      if (computerSelection === "scissors") {
+        return {
+          message: `You Win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}.`,
+          winner: "player"
+        };
+      } else {
+        return {
+          message: `You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}.`,
+          winner: "computer"
+        };
+      }
+
+    case "paper":
+      if (computerSelection === "rock") {
+        return {
+          message: `You Win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}.`,
+          winner: "player"
+        };
+      } else {
+        return {
+          message: `You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}.`,
+          winner: "computer"
+        };
+      }
+
+    case "scissors":
+      if (computerSelection === "paper") {
+        return {
+          message: `You Win! ${capitalize(playerSelection)} beats ${capitalize(computerSelection)}.`,
+          winner: "player"
+        };
+      } else {
+        return {
+          message: `You Lose! ${capitalize(computerSelection)} beats ${capitalize(playerSelection)}.`,
+          winner: "computer"
+        };
+      }
+
+    default:
+      return {
+        message: "Invalid weapon! Choose rock, paper, or scissors.",
+        winner: null
+      };
+  }
 };
+
+
+const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1); // Helper function to capitalize the first letter of a string
 
 // ANASTASIIA
 const play = (playerSelection, computerSelection) => {
     let winner = "";
+    let playerWins = 0;
+    let computerWins = 0;
+    let tie = 0;
     for (let i = 0; i < 5; i++) {
-        result = playRound(playerSelection, computerSelection);
-        console.log(`Round ${i + 1}: ${result}`);
+        const result = playRound(playerSelection, computerSelection);
+        console.log(`Round ${i + 1}: ${result.message}`);
     }
 
-    return winner;
+    if (result.winner === "player") {
+      playerWins++;
+    } else if (result.winner === "computer") {
+      computerWins++;
+    } else if (result.winner === "tie") {
+        tie++;
+    }
+
+    // Determine the overall winner
+    if (playerWins > computerWins) {
+    winner = "player";
+    } else if (computerWins > playerWins) {
+    winner = "computer";
+    } else {
+    winner = "tie";
+    }
+  
+  return { winner, playerWins, computerWins, tie }; 
 };
 
 // STEF
@@ -71,7 +150,8 @@ function userInput(text, placeholder = "") {
         if (exit) {
             alert("Bye Bye");
             return quit();
-        } else userInput(text, placeholder);
+        } else
+          return userInput(text, placeholder);
     } else return input;
 }
 function quit() {
