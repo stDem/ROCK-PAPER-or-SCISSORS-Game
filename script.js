@@ -18,13 +18,13 @@ const game = () => {
     if (confirm("Do you want to play with fate again? \n ( -_･) ︻デ═一' * (/❛o❛)/")) {
       game();
     } else {
-      alert("Ciao Ciao!");
+      alert("Ciao Ciao! (☛´∀｀*)☛");
       return quit();
     }
   } else {
     let exit = confirm("Do you wish to quite the game? \n （（●´∧｀●））");
     if (exit) {
-      alert("Bye Bye, COWARD!");
+      alert("Bye Bye, COWARD! (☛´∀｀*)☛");
       return quit();
     } else play();
   }
@@ -122,7 +122,7 @@ const playRound = () => {
         return {
           message: `You Lose! ${capitalize(
             computerSelection
-          )} beats ${capitalize(playerSelection)}.`,
+          )} beats ${capitalize(playerSelection)}. ♪～(￣、￣ )`,
           winner: "computer",
         };
       }
@@ -167,10 +167,10 @@ const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 const endGame = function (winner, playerVictories, computerVictories) {
   switch (winner) {
     case "player":
-      return `Contratulations, You won!\n\n Player ${playerVictories} - ${computerVictories} Computer `;
+      return `Contratulations, You won!\n\n Player ${playerVictories} - ${computerVictories} Computer ヾ(☆▽☆)`;
 
     case "computer":
-      return `You lost!\n\nOh Poor guy such a shame on you!\n\nPlayer ${playerVictories} - ${computerVictories} Computer `;
+      return `You lost!\n\nOh Poor guy such a shame on you!\n\nPlayer ${playerVictories} - ${computerVictories} Computer ♪～(￣、￣ )`;
 
     case "tie":
       return `It's a Tie!\n\n\n\nPlayer ${playerVictories} - ${computerVictories} Computer \n ✧( ु•⌄• )◞🍝🍝◟( •⌄• )✧`;
@@ -182,7 +182,7 @@ function userInput(text, placeholder = "") {
   if (input == null) {
     let exit = confirm("Do you wish to quite the game? \n （（●´∧｀●））");
     if (exit) {
-      alert("Bye Bye");
+      alert("Bye Bye (☛´∀｀*)☛");
       return "EXIT";
     } else return userInput(text, placeholder);
   } else return input;
