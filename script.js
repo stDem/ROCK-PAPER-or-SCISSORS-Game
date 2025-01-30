@@ -1,8 +1,12 @@
+let knowComputerActions = false;
+
 const game = () => {
   playGame = confirm(
-    "HELLO HUMAN!\n I am a bad AI that wants to dominate the world through the game of\n\nROCK x PAPER x SCISSORS\n Muuuuahhahhahahahahahahhahaahahahha! \n\n Can you beat me?",
+    "HELLO HUMAN!\n I am a bad AI that wants to dominate the world through the game of\n\nROCK x PAPER x SCISSORS\n Muuuuahhahhahahahahahahhahaahahahha! \n\n Can you beat me? \n ᕙ(⇀‸↼‶)ᕗ",
     ""
   );
+
+  knowComputerActions = confirm("Do you want to know computer actions during the game?   ( ͡° ͜ʖ ͡°) ");
 
   if (playGame) {
     const { winner, playerVictories, computerVictories, tie, exit } = play();
@@ -11,14 +15,14 @@ const game = () => {
     }
     const message = endGame(winner, playerVictories, computerVictories, tie);
     alert(message);
-    if (confirm("Do you want to play with fate again?")) {
+    if (confirm("Do you want to play with fate again? \n ( -_･) ︻デ═一' * (/❛o❛)/")) {
       game();
     } else {
       alert("Ciao Ciao!");
       return quit();
     }
   } else {
-    let exit = confirm("Do you wish to quite the game?");
+    let exit = confirm("Do you wish to quite the game? \n （（●´∧｀●））");
     if (exit) {
       alert("Bye Bye, COWARD!");
       return quit();
@@ -125,7 +129,7 @@ const playRound = () => {
 
     default:
       return {
-        message: "Invalid weapon! Choose rock, paper, or scissors.",
+        message: "Invalid weapon! Choose rock, paper, or scissors. \n ƪ(“╰ _ ╯ )ʃ",
         winner: null,
       };
   }
@@ -133,7 +137,7 @@ const playRound = () => {
 const playerPlay = () => {
   const regex = /^[a-zA-Z]+$/;
   let input = userInput(
-    "Choose your weapon!\n-> Rock\n-> Paper\n-> Scissors",
+    "Choose your weapon!\n-> Rock\n-> Paper\n-> Scissors \n (ง ͠ ᵒ̌ Дᵒ̌ )▬▬ι══════>",
     ""
   );
   if (input == "EXIT") {
@@ -141,20 +145,20 @@ const playerPlay = () => {
   }
 
   if (!regex.test(input)) {
-    alert("???\nSorry I don't understand that.\nTry again!");
+    alert("???\nSorry I don't understand that.\nTry again! \n ƪ(“╰ _ ╯ )ʃ");
     return playerPlay();
   }
   const playerAction = input.toLocaleLowerCase();
 
   return validActions.includes(playerAction)
     ? playerAction
-    : (alert("That weapon is not valid in this game! Try again!"),
+    : (alert("That weapon is not valid in this game! Try again! \n ƪ(“╰ _ ╯ )ʃ"),
       playerPlay());
 };
 
 const computerPlay = () => {
   const computerAction = validActions[Math.floor(Math.random() * 3)];
-  console.log(`Computer chose: ${computerAction}`);
+  if (knowComputerActions) console.log(`Computer chose: ${computerAction}`);
   return computerAction;
 };
 
@@ -169,14 +173,14 @@ const endGame = function (winner, playerVictories, computerVictories) {
       return `You lost!\n\nOh Poor guy such a shame on you!\n\nPlayer ${playerVictories} - ${computerVictories} Computer `;
 
     case "tie":
-      return `It's a Tie!\n\n\n\nPlayer ${playerVictories} - ${computerVictories} Computer `;
+      return `It's a Tie!\n\n\n\nPlayer ${playerVictories} - ${computerVictories} Computer \n ✧( ु•⌄• )◞🍝🍝◟( •⌄• )✧`;
   }
 };
 
 function userInput(text, placeholder = "") {
   let input = prompt(text, placeholder);
   if (input == null) {
-    let exit = confirm("Do you wish to quite the game?");
+    let exit = confirm("Do you wish to quite the game? \n （（●´∧｀●））");
     if (exit) {
       alert("Bye Bye");
       return "EXIT";
@@ -184,7 +188,7 @@ function userInput(text, placeholder = "") {
   } else return input;
 }
 function quit() {
-  console.log("quit");
+  console.log("quit ଵ ˛̼ ଵ");
   return open("./coward.gif", "_self");
 }
 
