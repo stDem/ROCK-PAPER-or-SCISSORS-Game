@@ -139,7 +139,7 @@ const playerPlay = () => {
   let input = userInput(
     "Choose your weapon!\n-> Rock\n-> Paper\n-> Scissors \n (ง ͠ ᵒ̌ Дᵒ̌ )▬▬ι══════>",
     ""
-  );
+  ).trim();
   if (input == "EXIT") {
     return "EXIT";
   }
