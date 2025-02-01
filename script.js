@@ -39,6 +39,8 @@ const play = () => {
       return { exit: true };
     }
     console.log(`Round ${i + 1}: ${result.message}`);
+    alert(`Round ${i + 1}: ${result.message}`);
+
 
     if (result.winner === "player") {
       playerVictories++;
