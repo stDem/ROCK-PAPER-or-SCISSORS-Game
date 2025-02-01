@@ -191,6 +191,7 @@ function userInput(text, placeholder = "") {
 }
 function quit() {
   console.log("quit ଵ ˛̼ ଵ");
+  console.clear();
   return open("./coward.gif", "_self");
 }
 
